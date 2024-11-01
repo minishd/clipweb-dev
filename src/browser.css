@@ -1,0 +1,33 @@
+/* ugly hack for better cross-engine scrollbars */
+
+:root {
+  --sec: #e5e7eb; /* bg-gray-200 */
+  /* These two colors are auto-computed in firefox. they're just here so chromium matches */
+  --sec-hov: #babbbf;
+  --sec-act: #6c6d70;
+  --prim: #000;
+}
+
+/* moz */
+* {
+  scrollbar-color: var(--sec) var(--prim);
+  scrollbar-width: thin;
+}
+
+/* webkit */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--prim);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--sec);
+  /* border: 2px solid var(--prim); */
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--sec-hov);
+}
+::-webkit-scrollbar-thumb:active {
+  background: var(--sec-act);
+}
