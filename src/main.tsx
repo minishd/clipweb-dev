@@ -1,4 +1,4 @@
-import "dreamland";
+import "dreamland/dev";
 import { Route, Router } from "dreamland-router";
 import Home from "./routes/home";
 import Login from "./routes/login";
@@ -9,7 +9,7 @@ import "./browser.css";
 let router = new Router(
   (
     <Route>
-      <Route path="" show={<Home />} />
+      <Route path="/" show={<Home />} />
       <Route path="/login" show={<Login />} />
       <Route path="/c/:id" show={<ViewClip />} />
     </Route>

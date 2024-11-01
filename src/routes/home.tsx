@@ -1,3 +1,5 @@
+import { Link } from "dreamland-router";
+
 type FakeClipMetadata = {
   id: string;
   title: string;
@@ -35,17 +37,17 @@ shuffle(fakeClips);
 const Clip: Component<{ meta: FakeClipMetadata }> = function () {
   return (
     <div>
-      <a href={`/c/${this.meta.id}`}>
+      <Link href={`/c/${this.meta.id}`}>
         <div class="aspect-w-16 aspect-h-9 mb-1 ring-1 hover:ring-2 ring-zinc-50">
           <img class="object-cover" src={this.meta.thumbnail} />
         </div>
         <p class="text-sm font-bold text-zinc-50">{use(this.meta.title)}</p>
-      </a>
+      </Link>
       <p class="text-xs font-normal text-zinc-200">
         viewed {use(this.meta.views)} times — by{" "}
-        <a class="hl" href="/u/123">
+        <Link class="hl" href="/u/123">
           {use(this.meta.author)}
-        </a>
+        </Link>
       </p>
     </div>
   );
@@ -64,6 +66,7 @@ const Clips: Component<{ clips: FakeClipMetadata[] }> = function () {
 const Home: Component = function () {
   return (
     <div>
+      <Link href="/login">Log In Here!</Link>
       <Clips clips={fakeClips} />
     </div>
   );

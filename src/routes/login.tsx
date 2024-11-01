@@ -1,18 +1,9 @@
 const LoginForm: Component = function () {
   return (
-    <div class="ring-1 ring-zinc-50 pl-7 pr-7 pb-6 pt-6 flex flex-col items-center text-center">
+    <div class="ring-1 ring-zinc-50 pl-5 pr-5 pb-3 pt-3 flex flex-col items-center text-center">
       <span class="w-full">
         <div class="mb-3">
-          <h1 class="text-2xl">
-            <span
-              class="focus:border-none focus:outline-none"
-              contenteditable="true"
-            >
-              clip
-            </span>{" "}
-            album
-          </h1>
-          <hr class="mb-3" />
+          <h1 class="text-2xl">welcome! </h1>
           <h2 class="text-lg">please log in</h2>
         </div>
         <input type="text" placeholder="your username.." />
@@ -20,7 +11,7 @@ const LoginForm: Component = function () {
         <input type="password" placeholder="a password.." />
         <br />
         <button
-          class="ring-zinc-50 ring-1 pl-1 pr-1 m-1 cursor-default hover:ring-2"
+          class="ring-zinc-50 ring-1 pl-1 pr-1 m-2 cursor-default hover:ring-2"
           on:click={() => alert("okay")}
         >
           submit
