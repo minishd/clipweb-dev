@@ -2,27 +2,3 @@
   font-family: OverpassMono;
   src: url(/overpass.woff2);
 }
-
-@font-face {
-  font-family: CourierPrime;
-  font-style: italic;
-  src: url(/CourierPrime-Italic.ttf);
-}
-
-@font-face {
-  font-family: CourierPrime;
-  font-style: italic;
-  font-weight: bold;
-  src: url(/CourierPrime-BoldItalic.ttf);
-}
-
-@font-face {
-  font-family: CourierPrime;
-  font-weight: bold;
-  src: url(/CourierPrime-Bold.ttf);
-}
-
-@font-face {
-  font-family: CourierPrime;
-  src: url(/CourierPrime-Regular.ttf);
-}

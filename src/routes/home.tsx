@@ -19,14 +19,14 @@ const fakeClips: FakeClipMetadata[] = [
   new Array(7).fill({
     id: "QBztqS0J",
     title: "some clip random clip",
-    author: "minish",
+    author: "min2",
     thumbnail: "https://picture.wtf/p/sRxZll.png",
     views: 180,
   }),
   new Array(7).fill({
     id: "6xjvVw3s",
-    title: "some another clip clip",
-    author: "vespreal123",
+    title: "Some other entry",
+    author: "user789127",
     thumbnail: "https://picture.wtf/p/j3ASVX.jpg",
     views: 97,
   }),
@@ -66,8 +66,8 @@ const Clips: Component<{ clips: FakeClipMetadata[] }> = function () {
 const Home: Component = function () {
   return (
     <div>
-      <Link href="/login">Log In Here!</Link>
       <Clips clips={fakeClips} />
+      <Link href="/login">test link for login</Link>
     </div>
   );
 };
