@@ -41,12 +41,12 @@ const Clip: Component<{ meta: FakeClipMetadata }> = function () {
         <div class="aspect-w-16 aspect-h-9 mb-1 ring-1 hover:ring-2 ring-zinc-50">
           <img class="object-cover" src={this.meta.thumbnail} />
         </div>
-        <p class="text-sm font-bold text-zinc-50">{use(this.meta.title)}</p>
+        <p class="text-sm font-bold text-zinc-50">{this.meta.title}</p>
       </Link>
       <p class="text-xs font-normal text-zinc-200">
         viewed {use(this.meta.views)} times — by{" "}
         <Link class="hl" href="/u/123">
-          {use(this.meta.author)}
+          {this.meta.author}
         </Link>
       </p>
     </div>
@@ -67,7 +67,8 @@ const Home: Component = function () {
   return (
     <div>
       <Clips clips={fakeClips} />
-      <Link href="/login">test link for login</Link>
+      <Link class="hl" href="/login"><p>test link for login</p></Link>
+      <Link class="hl" href="/thisshould404"><p>clicking this should 404</p></Link>
     </div>
   );
 };
