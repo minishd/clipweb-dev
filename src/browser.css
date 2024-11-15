@@ -1,11 +1,11 @@
 /* ugly hack for better cross-engine scrollbars */
 
 :root {
-  --sec: #e5e7eb; /* bg-gray-200 */
+  --sec: #fbfbfe; /* bg-gray-200 */
   /* These two colors are auto-computed in firefox. they're just here so chromium matches */
-  --sec-hov: #babbbf;
-  --sec-act: #6c6d70;
-  --prim: #000;
+  --sec-hov: #ccccce;
+  --sec-act: #777779;
+  --prim: #09090b;
 }
 
 /* moz */

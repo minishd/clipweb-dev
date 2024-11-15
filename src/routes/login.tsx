@@ -1,34 +1,35 @@
 const LoginForm: Component = function () {
   return (
-    <div class="ring-1 ring-zinc-50 pl-5 pr-5 pb-3 pt-3 flex flex-col items-center text-center">
-      <span class="w-full">
-        <div class="mb-3">
-          <h1 class="text-2xl">welcome! </h1>
-          <h2 class="text-lg">please log in</h2>
-        </div>
-        <input type="text" placeholder="your username.." />
-        <br />
-        <input type="password" placeholder="a password.." />
-        <br />
-        <button
-          class="ring-zinc-50 ring-1 pl-1 pr-1 m-2 cursor-default hover:ring-2"
-          on:click={() => alert("okay")}
-        >
-          submit
-        </button>
-      </span>
+    <div class="ring-1 ring-zinc-50 pl-5 pr-5 pb-2 pt-3">
+      <div>
+        <h1 class="text-2xl underline underline-offset-2">Log In</h1>
+      </div>
+
+      <h2>username</h2>
+      <input type="text" class="mt-1 mb-2" />
+      <br />
+
+      <h2>password</h2>
+      <input type="password" class="mt-1 mb-2" />
+      <br />
+
+      <button class="mt-2 mb-2" on:click={() => alert("okay")}>
+        submit
+      </button>
     </div>
   );
 };
 
 const Login: Component = function () {
   return (
-    <span>
-      <p class="absolute h-screen p-2 flex items-end justify-start text-zinc-600">clip album v0.1.0</p>
+    <div>
+      <div class="absolute bottom-0 left-0 p-2 text-zinc-300 bg-inherit">
+        <p>clip album v0.1.0</p>
+      </div>
       <div class="flex items-center justify-center min-h-screen">
         <LoginForm />
       </div>
-    </span>
+    </div>
   );
 };
 
