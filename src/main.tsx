@@ -14,11 +14,11 @@ const NavBar: Component = function () {
   return (
     <div class="w-full pb-1.5 py-2 flex justify-between">
       <h1 class="text-xl font-bold">clip album</h1>
-      <h1 class="text-md font-">
-        <iconify-icon icon="fa:user" />{" "}
+      <h1 class="text-md font-medium">
         {use(state.claimsCache, (cc) =>
           !!cc ? cc.username : "you're logged out!"
-        )}
+        )}{" "}
+        <iconify-icon icon="fa:user" />
       </h1>
     </div>
   );

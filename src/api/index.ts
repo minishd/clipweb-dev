@@ -1,6 +1,6 @@
 import axios, { Axios } from "axios";
-import { auth, state } from "../state";
-import { jwtDecode, JwtPayload } from "jwt-decode";
+import { auth } from "../state";
+import { JwtPayload } from "jwt-decode";
 
 export const BASE_URL = "http://localhost:8085";
 
@@ -61,9 +61,7 @@ export class ApiClient {
     );
     const data = response.data;
 
-    const aTk = data.access_token;
-    auth.access_token = aTk;
-    state.claimsCache = jwtDecode<Claims>(aTk);
+    auth.access_token = data.access_token;
 
     if (data.refresh_token) {
       auth.refresh_token = data.refresh_token;

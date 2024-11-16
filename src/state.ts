@@ -1,3 +1,4 @@
+import { jwtDecode } from "jwt-decode";
 import { Claims } from "./api";
 
 export type AuthStore = {
@@ -28,4 +29,8 @@ export const state = $state<State>({
   claimsCache: undefined,
   userCache: $state({}),
   clipHoverCache: $state({}),
+});
+
+useChange(auth.access_token, (tk) => {
+  state.claimsCache = !!tk ? jwtDecode<Claims>(tk) : undefined;
 });
