@@ -2,45 +2,58 @@ import { AxiosError } from "axios";
 import { api } from "../api/auth";
 import { Link } from "dreamland-router";
 import { sha256 } from "../util";
-import { router } from "../main";
 
-const LoginForm: Component<
+const RegisterForm: Component<
   {},
   {
     username: string;
     password: string;
-    error: string;
+    invite: string;
+    status: string;
+    success: boolean;
   }
 > = function () {
-  this.username = this.password = this.error = "";
+  this.username = this.password = this.invite = this.status = "";
 
-  const doLogin = async () => {
-    if (!this.username || !this.password) return "a field is empty";
+  const doRegister = async () => {
+    if (!this.username || !this.password || !this.invite) {
+      this.success = false;
+      this.status = "a field is empty";
+      return;
+    }
 
     try {
-      await api.login(this.username, await sha256(this.password));
+      await api.register(
+        this.username,
+        await sha256(this.password),
+        this.invite
+      );
+
+      this.success = true;
+      this.status = "account created!";
     } catch (err) {
+      this.success = false;
+
       if (err instanceof AxiosError) {
         switch (err.status) {
           case 404:
-            return "user not found";
-          case 401:
-            return "incorrect password";
+            this.status = "invite not found";
+            return;
+          case 410:
+            this.status = "invite already used";
+            return;
         }
       }
-      return "unknown error?";
+
+      this.status = "unknown error?";
     }
-
-    router.navigate("/");
-
-    return "";
   };
 
   return (
     <div class="ring-1 ring-zinc-50 py-4 px-6 bg-zinc-950/65">
       <div>
         <h1 class="text-2xl font-semibold underline underline-offset-2">
-          Log In
+          Register
         </h1>
       </div>
 
@@ -62,20 +75,26 @@ const LoginForm: Component<
       />
       <br />
 
+      <h2>registration invite</h2>
+      <input type="text" class="mt-1 mb-2 w-64" bind:value={use(this.invite)} />
+      <br />
+
       <div class="flex gap-3 items-center">
         <button
           class="mt-2 mb-2 w-20"
-          on:click={async () => (this.error = await doLogin())}
+          on:click={async () => await doRegister()}
         >
-          sign in
+          register
         </button>
         {$if(
-          use(this.error.length),
-          <h3 class="text-red-400">{use(this.error)}</h3>,
+          use(this.status.length),
+          <h3 class={use(this.success, (v) => (!v ? "text-red-400" : ""))}>
+            {use(this.status)}
+          </h3>,
           <p>
             or,{" "}
-            <Link href="/register" class="hl">
-              register
+            <Link href="/login" class="hl">
+              log in
             </Link>
           </p>
         )}
@@ -84,7 +103,7 @@ const LoginForm: Component<
   );
 };
 
-const Login: Component = function () {
+const Register: Component = function () {
   return (
     <div>
       <div id="grid-bg" />
@@ -92,10 +111,10 @@ const Login: Component = function () {
         <p>clip album v0.1.0</p>
       </div>
       <div class="relative flex items-center justify-center min-h-screen">
-        <LoginForm />
+        <RegisterForm />
       </div>
     </div>
   );
 };
 
-export default Login;
+export default Register;

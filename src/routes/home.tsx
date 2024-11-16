@@ -45,8 +45,9 @@ const Clip: Component<{ meta: FakeClipMetadata }> = function () {
   return (
     <div>
       <Link href={`/c/${this.meta.id}`}>
-        <div class="aspect-w-16 aspect-h-9 mb-1 ring-1 hover:ring-2 ring-zinc-50 cursor-default">
+        <div class="aspect-w-16 aspect-h-9 mb-1 ring-1 ring-zinc-50">
           <img class="object-cover" src={this.meta.thumbnail} alt="" />
+          <div class="object-fill hover:bg-zinc-50/20 transition-all ease-out duration-100" />
         </div>
         <p class="text-sm font-bold text-zinc-50">{this.meta.title}</p>
       </Link>
@@ -122,18 +123,22 @@ const Sort: Component = function () {
 };
 
 const Home: Component = function () {
+
   return (
-    <div class="p-5">
-      <h1 class="text-xl font-bold pb-2">clip album</h1>
-      <div class="flex gap-3">
-        <div>
-          <Search />
-          <Sort />
-          <br />
-          <button on:click={() => document.write("💥💥💥💥💥💥")}>iran nuke button</button>
-        </div>
-        <div class="flex-1 pt-[1px]">
-          <Clips clips={fakeClips} />
+    <div>
+      <div id="grid-bg" />
+      <div class="relative p-5">
+        <h1 class="text-xl font-bold pb-2">clip album</h1>
+        <div class="flex gap-3">
+          <div>
+            <Search />
+            <Sort />
+            <br />
+            <button>example button</button>
+          </div>
+          <div class="flex-1 pt-[1px]">
+            <Clips clips={fakeClips} />
+          </div>
         </div>
       </div>
       <div class="absolute bottom-0 left-0 p-2">

@@ -1,5 +1,7 @@
-type AuthStore = {
+export type AuthStore = {
   refresh_token?: string;
+  access_token?: string;
+  last_refresh_time?: Date;
 };
 
 export const auth = $store<AuthStore>(
