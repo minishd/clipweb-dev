@@ -1,3 +1,5 @@
+import { Claims } from "./api";
+
 export type AuthStore = {
   refresh_token?: string;
   access_token?: string;
@@ -10,17 +12,20 @@ export const auth = $store<AuthStore>(
 );
 
 type UserCached = {};
-
-type UserCacheState = {
-  [key: number]: UserCached;
-};
-
-export const userCache = $state<UserCacheState>({});
-
 type ClipCached = {};
 
-type OneshotClipCacheState = {
-  [key: number]: ClipCached;
+type State = {
+  claimsCache?: Claims;
+  userCache: Stateful<{
+    [key: number]: UserCached;
+  }>;
+  clipHoverCache: Stateful<{
+    [key: string]: ClipCached;
+  }>;
 };
 
-export const oneshotClipCache = $state<OneshotClipCacheState>({});
+export const state = $state<State>({
+  claimsCache: undefined,
+  userCache: $state({}),
+  clipHoverCache: $state({}),
+});

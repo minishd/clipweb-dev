@@ -1,5 +1,5 @@
 import { AxiosError } from "axios";
-import { api } from "../api/auth";
+import { api } from "../api";
 import { Link } from "dreamland-router";
 import { sha256 } from "../util";
 
@@ -106,11 +106,10 @@ const RegisterForm: Component<
 const Register: Component = function () {
   return (
     <div>
-      <div id="grid-bg" />
-      <div class="absolute bottom-0 left-0 p-2 text-zinc-400 bg-zinc-950/15">
+      <div class="fixed bottom-0 left-0 p-2 text-zinc-400 bg-zinc-950/15">
         <p>clip album v0.1.0</p>
       </div>
-      <div class="relative flex items-center justify-center min-h-screen">
+      <div class="absolute top-0 left-0 w-screen h-screen flex items-center justify-center">
         <RegisterForm />
       </div>
     </div>

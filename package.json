@@ -12,6 +12,8 @@
     "axios": "^1.7.7",
     "dreamland": "^0.0.24",
     "dreamland-router": "https://github.com/mercuryworkshop/dreamland-router",
+    "iconify-icon": "^2.1.0",
+    "jwt-decode": "^4.0.0",
     "rollup-plugin-typescript2": "^0.36.0",
     "vite-plugin-dreamland": "^1.2.0"
   },
