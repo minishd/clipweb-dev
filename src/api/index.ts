@@ -1,18 +1,26 @@
 import axios, { Axios } from "axios";
-import { auth } from "../state";
+import { auth, state } from "../state";
 import { JwtPayload } from "jwt-decode";
 
 export const BASE_URL = "http://localhost:8085";
 
+export type MiniUser = {
+  id: number;
+  username: string;
+  joined_at: Date;
+};
+
+export type Clip = {
+  id: string;
+  title: string;
+  added_by: number;
+  tags: string[];
+  url: string;
+};
+
 type ClipsSearchResponse = {
-  authors: {
-    username: string;
-  }[];
-  clips: {
-    title: string;
-    author_id: number;
-    num_views: string;
-  }[];
+  users: MiniUser[];
+  clips: Clip[];
 };
 
 export interface Claims extends JwtPayload {
@@ -39,6 +47,9 @@ export class ApiClient {
   token(refresh = false) {
     const token = refresh ? auth.refresh_token : auth.access_token;
 
+    if (!token)
+      throw new Error(`missing ${refresh ? "refresh" : "access"} token`);
+
     return {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -46,10 +57,25 @@ export class ApiClient {
     };
   }
 
-  async refresh(full: boolean) {
-    if (!auth.refresh_token)
-      throw new Error("can't refresh without an access token");
+  async search(query: string): Promise<Clip[]> {
+    let response = await this.axios.get<ClipsSearchResponse>(
+      "/api/clips/search",
+      {
+        params: {
+          query: query,
+        },
+      }
+    );
+    const data = response.data;
 
+    for (const [id, user] of data.users.entries()) {
+      state.userCache.set(id, user);
+    }
+
+    return data.clips;
+  }
+
+  async refresh(full: boolean) {
     let response = await this.axios.get<AuthRefreshResponse>(
       "/api/auth/refresh",
       {

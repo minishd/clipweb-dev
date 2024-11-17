@@ -7,3 +7,7 @@ export async function sha256(plaintext: string): Promise<string> {
 
   return hashStr;
 }
+
+export async function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}

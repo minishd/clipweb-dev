@@ -1,5 +1,5 @@
 import { jwtDecode } from "jwt-decode";
-import { Claims } from "./api";
+import { Claims, Clip, MiniUser } from "./api";
 
 export type AuthStore = {
   refresh_token?: string;
@@ -12,23 +12,16 @@ export const auth = $store<AuthStore>(
   { ident: "auth-store", backing: "localstorage", autosave: "auto" }
 );
 
-type UserCached = {};
-type ClipCached = {};
-
 type State = {
   claimsCache?: Claims;
-  userCache: Stateful<{
-    [key: number]: UserCached;
-  }>;
-  clipHoverCache: Stateful<{
-    [key: string]: ClipCached;
-  }>;
+  userCache: Stateful<Map<number, MiniUser>>;
+  clipHoverCache: Stateful<Map<number, Clip>>;
 };
 
 export const state = $state<State>({
   claimsCache: undefined,
-  userCache: $state({}),
-  clipHoverCache: $state({}),
+  userCache: $state(new Map()),
+  clipHoverCache: $state(new Map()),
 });
 
 useChange(auth.access_token, (tk) => {

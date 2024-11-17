@@ -38,7 +38,12 @@ body {
 
   button {
     @apply hover:bg-zinc-50 hover:text-black transition-all;
-    @apply ring-zinc-50 ring-1 ring-inset pt-0.5 pb-0.5 pl-1.5 pr-1.5 cursor-default;
+    @apply ring-zinc-50 ring-1 ring-inset py-0.5 px-1.5;
+  }
+
+  input[type="submit"] {
+    @apply hover:bg-zinc-50 hover:text-black transition-all;
+    @apply ring-zinc-50 ring-1 ring-inset py-1 pl-1.5 pr-2.5 font-normal cursor-pointer;
   }
 
   #bg {

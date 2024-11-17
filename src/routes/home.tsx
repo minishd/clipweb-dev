@@ -97,25 +97,22 @@ const Search: Component = function () {
 const Sort: Component = function () {
   return (
     <div>
-      <h1 class="text-lg font-semibold">Tags</h1>
+      <h1 class="text-lg font-semibold cursor-default">Tags</h1>
       <ul class="text-2md">
         <li>
-          <strong>+ -</strong> valorant
+          <b>+</b> <b>-</b> valorant
         </li>
         <li>
-          <strong>+ -</strong> pie
+          <b>+</b> <b>-</b> pie
         </li>
         <li>
-          <strong>+ -</strong> nword
+          <b>+</b> <b>-</b> minecraft
         </li>
         <li>
-          <strong>+ -</strong> minecraft
+          <b>+</b> <b>-</b> hypixel
         </li>
         <li>
-          <strong>+ -</strong> hypixel
-        </li>
-        <li>
-          <strong>+ -</strong> skywars
+          <b>+</b> <b>-</b> skywars
         </li>
       </ul>
     </div>
